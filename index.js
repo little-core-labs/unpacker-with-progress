@@ -3,8 +3,8 @@ const fs = require('fs').promises
 const { promisify } = require('util')
 const mkdirp = promisify(require('mkdirp'))
 const assert = require('nanoassert')
-const unzip = require('unzipper')
-const { Writable } = require('streamx')
+const untarer = require('./lib/untar')
+const unzipper = require('./lib/unzip')
 
 /**
  * Unpack archives with progress and resume
@@ -16,7 +16,7 @@ const { Writable } = require('streamx')
 async function unpack (src, dest, opts) {
   opts = {
     resume: true,
-    progressCb (prog) { /* noop */ },
+    progressCb (stats) { /* noop */ },
     ...opts
   }
 
@@ -42,9 +42,7 @@ async function unpack (src, dest, opts) {
   // - Src is of the correct type
 
   if (['.gz', '.tar'].some(ext => ext === srcPathObj.ext)) {
-    // .tar, .gz and .tar.gz
-    throw new Error('not implemented')
-    // return untarer(src, dest, opts)
+    return untarer(src, dest, opts)
   }
 
   if (srcPathObj.ext === '.zip') {
@@ -55,9 +53,3 @@ async function unpack (src, dest, opts) {
 }
 
 module.exports = unpack
-
-async function unzipper (src, dest, opts) {
-  const src = fs.createReadStream(src)
-  const unzipStream = unzip.Parse()
-  const wr
-}
