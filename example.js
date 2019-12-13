@@ -6,16 +6,16 @@ async function work () {
   const progressCb = (...args) => console.log(...args)
 
   console.log(dir)
-
-  const results = await Promise.all([
-    // unpack('./test/fixtures/gzip-archive.tar.gz', dir, { progressCb }),
-    // unpack('./test/fixtures/tar-archive.tar', dir, { progressCb }),
-    unpack('./test/fixtures/test-zip.zip', dir, { progressCb })
-  ])
-
-  await cleanup()
-
-  return results
+  try {
+    const results = await Promise.all([
+      // unpack('./test/fixtures/gzip-archive.tar.gz', dir, { progressCb }),
+      // unpack('./test/fixtures/tar-archive.tar', dir, { progressCb }),
+      unpack('./test/fixtures/test-zip.zip', dir, { progressCb })
+    ])
+    return results
+  } finally {
+    await cleanup()
+  }
 }
 
 work().then(results => {
