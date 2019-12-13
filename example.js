@@ -13,7 +13,7 @@ async function work () {
     unpack('./test/fixtures/test-zip.zip', dir, { progressCb })
   ])
 
-  // await cleanup()
+  await cleanup()
 
   return results
 }
@@ -21,4 +21,4 @@ async function work () {
 work().then(results => {
   console.log(results)
   console.log('done')
-}).catch(e => { throw e })
+}).catch(console.error)
