@@ -23,6 +23,7 @@
     "nanoassert": "^2.0.0",
     "streamx": "^2.5.0",
     "tar-fs": "^2.0.0",
+    "tar-stream": "^2.1.0",
     "yauzl": "^2.10.0"
   }
 }

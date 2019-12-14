@@ -17,6 +17,7 @@ async function unpack (src, dest, opts) {
   opts = {
     resume: true,
     progressCb (stats) { /* noop */ },
+    resume: true, // skip files on disk that match entry filesize
     ...opts
   }
 

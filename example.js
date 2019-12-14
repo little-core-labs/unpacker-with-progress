@@ -8,9 +8,8 @@ async function work () {
   console.log(dir)
   try {
     const results = await Promise.all([
-      // unpack('./test/fixtures/gzip-archive.tar.gz', dir, { progressCb }),
-      // unpack('./test/fixtures/tar-archive.tar', dir, { progressCb }),
-      unpack('./test/fixtures/test-zip.zip', dir, { progressCb })
+      unpack('./test/fixtures/test-tar.tar.gz', dir, { progressCb })
+      // unpack('./test/fixtures/test-zip.zip', dir, { progressCb })
     ])
     return results
   } finally {
