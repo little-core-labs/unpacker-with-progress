@@ -1,4 +1,5 @@
 # unpacker-with-progress
+[![Actions Status](https://github.com/little-core-labs/unpacker-with-progress/workflows/Tests/badge.svg)](https://github.com/little-core-labs/unpacker-with-progress/actions)
 
 Unpack `.tar`, `.tar.gz` and `.zip` archives, provide progress info, and an idempotent + resumable API.
 
