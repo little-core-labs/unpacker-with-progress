@@ -9,8 +9,8 @@ const statProps = [
   'unpacked',
   'skipped',
   'totalEntries',
-  'totalBytes',
-  'bytesWritten']
+  'total',
+  'loaded']
 
 tap.test('basic api is exported', async t => {
   t.equal(typeof unpack, 'function', 'Exports the unpacker function')
@@ -33,7 +33,7 @@ tap.test('unzip a zip file', async t => {
 
     t.equal(stats.entriesProcessed, stats.totalEntries, 'file entries are processed')
     t.equal(stats.percent, 1, 'percent === 1.0')
-    t.equal(stats.totalBytes, stats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(stats.total, stats.loaded, 'loaded === total')
     t.equal(stats.unpacked, 3, 'three real files are unpacked')
     t.equal(stats.skipped, 2, 'two of the entries are dirs')
   } finally {
@@ -58,7 +58,7 @@ tap.test('unzip a tar file', async t => {
 
     t.equal(stats.entriesProcessed, stats.totalEntries, 'file entries are processed')
     t.equal(stats.percent, 1, 'percent === 1.0')
-    t.equal(stats.totalBytes, stats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(stats.total, stats.loaded, 'loaded === total')
     t.equal(stats.unpacked, 3, 'three real files are unpacked')
     t.equal(stats.skipped, 2, 'two of the entries are dirs')
   } finally {
@@ -83,14 +83,14 @@ tap.test('unzip a zip file, then do it again testing resume feature', async t =>
 
     t.equal(stats.entriesProcessed, stats.totalEntries, 'file entries are processed')
     t.equal(stats.percent, 1, 'percent === 1.0')
-    t.equal(stats.totalBytes, stats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(stats.total, stats.loaded, 'loaded === total')
     t.equal(stats.unpacked, 3, 'three real files are unpacked')
     t.equal(stats.skipped, 2, 'two of the entries are dirs')
 
     const resumeStats = await unpack(zipPath, dir, { progressCb: progressCbAssert })
 
     t.equal(resumeStats.entriesProcessed, resumeStats.totalEntries, 'file entries are processed')
-    t.equal(resumeStats.totalBytes, resumeStats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(resumeStats.total, resumeStats.loaded, 'loaded === total')
     t.equal(resumeStats.unpacked, 0, 'nothing is unpacked')
     t.equal(resumeStats.skipped, 5, 'everything is skipped')
   } finally {
@@ -115,14 +115,14 @@ tap.test('unzip a tar file, then do it again testing resume feature', async t =>
 
     t.equal(stats.entriesProcessed, stats.totalEntries, 'file entries are processed')
     t.equal(stats.percent, 1, 'percent === 1.0')
-    t.equal(stats.totalBytes, stats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(stats.total, stats.loaded, 'loaded === total')
     t.equal(stats.unpacked, 3, 'three real files are unpacked')
     t.equal(stats.skipped, 2, 'two of the entries are dirs')
 
     const resumeStats = await unpack(tarPath, dir, { progressCb: progressCbAssert })
 
     t.equal(resumeStats.entriesProcessed, resumeStats.totalEntries, 'file entries are processed')
-    t.equal(resumeStats.totalBytes, resumeStats.bytesWritten, 'bytesWritten === totalBytes')
+    t.equal(resumeStats.total, resumeStats.loaded, 'loaded === total')
     t.equal(resumeStats.unpacked, 0, 'nothing is unpacked')
     t.equal(resumeStats.skipped, 5, 'everything is skipped')
   } finally {

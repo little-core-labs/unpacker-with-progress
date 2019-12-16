@@ -38,7 +38,7 @@ Opts include:
 ```js
 {
   resume: true, // Skip files if they are already extracted in dest
-  progressCb (stats) { /* noop */ } // progress function.  Use this to track progress while extraacting.
+  onprogress (stats) { /* noop */ } // progress function.  Use this to track progress while extraacting.
 }
 ```
 
@@ -51,8 +51,8 @@ The `stats` object contains the following properties:
   skipped, // number of entries skipped
   unpacked, // number of files extracted
   totalEntries, // Total number of entries
-  totalBytes, // total number of bytes after extraction
-  bytesWritten // running total of bytes written
+  total, // total number of bytes after extraction
+  loaded // running total of bytes written
 }
 ```
 

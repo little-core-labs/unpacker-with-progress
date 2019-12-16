@@ -15,7 +15,7 @@ const unzipper = require('./lib/unzip')
  */
 async function unpack (src, dest, opts) {
   opts = {
-    progressCb (stats) { /* noop */ },
+    onprogress (stats) { /* noop */ },
     resume: true, // skip files on disk that match entry filesize
     ...opts
   }
