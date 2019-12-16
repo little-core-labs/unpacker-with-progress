@@ -18,7 +18,7 @@ function unpack () {
   ])
 }
 
-unpack().then(console.log('done'))
+unpack().then(stats => console.log('done'))
 ```
 
 ## Installation
