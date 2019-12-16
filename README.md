@@ -13,8 +13,8 @@ const dest = './some-dest'
 
 function unpack () {
   return Promise.all([
-    unpacker(zip, dest, { progressCb (progress) { console.log(progress.percent) } }),
-    unpacker(tar, dest, { progressCb (progress) { console.log(progress.percent) } })
+    unpacker(zip, dest, { onprogress (progress) { console.log(progress.percent) } }),
+    unpacker(tar, dest, { onprogress (progress) { console.log(progress.percent) } })
   ])
 }
 
