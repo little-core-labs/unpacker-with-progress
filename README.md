@@ -28,7 +28,7 @@ $ npm install unpacker-with-progress -g
 
 ## API
 
-### `promise(stats) = unpacker(src, dest, [opts])
+### `promise(stats) = unpacker(src, dest, [opts])`
 
 Unpack a `zip` or `tar.gz` at the given `src` path, to the `dest` path.  Returns a promise that resolves to a `stats` object.
 
