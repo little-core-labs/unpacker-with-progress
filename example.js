@@ -3,9 +3,9 @@ const tmp = require('p-temporary-directory')
 
 async function work () {
   const [dir, cleanup] = await tmp()
-  const progressCb = () => {}// (...args) => console.log(...args)
-
   console.log(dir)
+  const progressCb = (...args) => console.log(...args)
+
   try {
     const results = await Promise.all([
       unpack('./test/fixtures/test-tar.tar.gz', dir, { progressCb }),
